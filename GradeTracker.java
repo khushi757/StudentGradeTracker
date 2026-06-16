@@ -16,7 +16,8 @@ public class GradeTracker {
             System.out.println("\n===== STUDENT GRADE TRACKER =====");
             System.out.println("1. Add Student");
             System.out.println("2. Display Students");
-            System.out.println("3. Exit");
+            System.out.println("3. Search Student");
+            System.out.println("4. Exit");
 
             System.out.print("Enter Choice: ");
 
@@ -44,15 +45,40 @@ public class GradeTracker {
                     for(Student s : students){
 
                         System.out.println(
-                                s.getName() +
-                                " : " +
-                                s.getMarks());
+        "Name: " + s.getName()
+        + " | Marks: " + s.getMarks()
+        + " | Grade: " + s.getGrade());
 
                     }
 
                     break;
-
                 case 3:
+
+                    System.out.print("Enter Student Name: ");
+    String searchName = sc.nextLine();
+
+    boolean found = false;
+
+    for(Student s : students){
+
+        if(s.getName().equalsIgnoreCase(searchName)){
+
+            System.out.println(
+                    "Name: " + s.getName()
+                    + " | Marks: " + s.getMarks()
+                    + " | Grade: " + s.getGrade());
+
+            found = true;
+        }
+    }
+
+    if(!found){
+        System.out.println("Student Not Found!");
+    }
+
+    break;
+
+                case 4:
 
                     System.out.println("Thank You");
 
@@ -64,7 +90,7 @@ public class GradeTracker {
 
             }
 
-        } while(choice != 3);
+        } while(choice != 4);
 
         sc.close();
     }
