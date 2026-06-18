@@ -17,7 +17,9 @@ public class GradeTracker {
             System.out.println("1. Add Student");
             System.out.println("2. Display Students");
             System.out.println("3. Search Student");
-            System.out.println("4. Exit");
+            System.out.println("4. Delete Student");
+            System.out.println("5. Show Statistics");
+            System.out.println("6. Exit");
 
             System.out.print("Enter Choice: ");
 
@@ -77,8 +79,75 @@ public class GradeTracker {
     }
 
     break;
+    case 4:
 
-                case 4:
+    System.out.print("Enter Student Name to Delete: ");
+    String deleteName = sc.nextLine();
+
+    boolean removed = false;
+
+    for(int i = 0; i < students.size(); i++){
+
+        if(students.get(i).getName().equalsIgnoreCase(deleteName)){
+
+            students.remove(i);
+
+            removed = true;
+
+            System.out.println("Student Deleted Successfully!");
+
+            break;
+        }
+    }
+
+    if(!removed){
+        System.out.println("Student Not Found!");
+    }
+
+    break;
+    case 5:
+
+    if(students.size() == 0){
+
+        System.out.println("No Student Records Found!");
+
+        break;
+    }
+
+    int total = 0;
+
+    int highest = students.get(0).getMarks();
+
+    int lowest = students.get(0).getMarks();
+
+    for(Student s : students){
+
+        total += s.getMarks();
+
+        if(s.getMarks() > highest){
+            highest = s.getMarks();
+        }
+
+        if(s.getMarks() < lowest){
+            lowest = s.getMarks();
+        }
+    }
+
+    double average = (double) total / students.size();
+
+    System.out.println("\n===== SUMMARY REPORT =====");
+
+    System.out.println("Total Students : " + students.size());
+
+    System.out.println("Average Marks  : " + average);
+
+    System.out.println("Highest Marks  : " + highest);
+
+    System.out.println("Lowest Marks   : " + lowest);
+
+    break;
+
+                case 6:
 
                     System.out.println("Thank You");
 
@@ -90,7 +159,7 @@ public class GradeTracker {
 
             }
 
-        } while(choice != 4);
+        } while(choice != 6);
 
         sc.close();
     }
